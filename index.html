@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Save Health</title>
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="icon" type="image/png" href="img/heartlogo.ico.png" />
+    <style>
+      .features p {
+        background-image: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header class="site-header">
+        <h1>Save Health</h1>
+        <p>Збереження здоров'я та корисні поради</p>
+        <img src="img/img1.png" width="359" height="190" alt="Health image" />
+      </header>
+
+      <section class="features">
+        <h2>Чому важливо дбати про здоров'я?</h2>
+        <p class="feature-kitten">
+          Регулярна фізична активність сприяє зміцненню серцево-судинної системи та покращенню загального стану здоров'я.
+        </p>
+        <p class="feature-train">
+          Збалансоване харчування допомагає підтримувати енергію та зміцнювати імунітет.
+        </p>
+        <p class="feature-cat">
+          Повноцінний сон та зниження рівня стресу позитивно впливають на загальне самопочуття.
+        </p>
+      </section>
+
+      <section class="skills">
+        <h2>Як підтримувати здоров'я?</h2>
+        <ul class="skills-list">
+          <li class="skills-item">Займайтеся фізичною активністю щонайменше 30 хвилин на день.</li>
+          <li class="skills-item standard">Вживайте більше овочів, фруктів та корисних жирів.</li>
+          <li class="skills-item standard">Дотримуйтесь режиму сну та уникайте стресових ситуацій.</li>
+          <li class="skills-item vip">Регулярно проходьте медичні обстеження та стежте за рівнем гідратації.</li>
+          <li class="skills-item vip">Проводьте час на свіжому повітрі та уникайте шкідливих звичок.</li>
+        </ul>
+      </section>
+
+      <section>
+        <h3>Корисні поради</h3>
+        <button id="Wishes_btn">Отримати пораду</button>
+        <p id="p_Wishes">Тут будуть генеруватися корисні поради</p>
+      </section>
+
+      <footer class="site-footer container">
+        <p id="btn-buy-pills">Прийняти пігулку 💊</p>
+        <p id="count-of-pills">💊💊🤍🤍🤍</p>
+      </footer>
+    </div>
+    <script>
+      let pillsCount = 5;
+      const pillsDisplay = document.getElementById("count-of-pills");
+      const pillButton = document.getElementById("btn-buy-pills");
+
+      pillButton.addEventListener("click", function () {
+        if (pillsCount > 0) {
+          pillsCount--;
+          pillsDisplay.innerHTML = "💊".repeat(pillsCount);
+        }
+      });
+    </script>
+  </body>
+</html>
