@@ -9,6 +9,15 @@ body {
 
 }
 
+body {
+  padding: 0;
+  font-family: "Arial", sans-serif;
+  font-size: 14px;
+  line-height: 18px;
+  color: #000000;
+  background: #ffffff url("../img/background3.jfif") no-repeat;
+  background-size: cover;
+}
 h1 {
   width: 260px;
   font-family: "Georgia", serif;
