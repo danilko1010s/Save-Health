@@ -23,16 +23,20 @@
         }
         .gallery {
             display: flex;
-            flex-direction: column;
             align-items: center;
+            justify-content: center;
         }
         .gallery img {
             width: 400px;
             height: 300px;
             border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to main image */
+            transition: opacity 0.5s ease-in-out; /* Add animation for image changes */
         }
         .gallery-controls {
-            margin-top: 10px;
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
         }
         .skills-list li {
             list-style: none;
@@ -41,7 +45,6 @@
         }
         .skills-list li i {
             margin-right: 8px;
-            color: green;
         }
         .pill-controls {
             margin-top: 15px;
@@ -53,9 +56,19 @@
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to buttons */
+            transition: box-shadow 0.3s ease; /* Add transition for shadow change */
         }
         button:hover {
-            background-color: darkgreen; 
+            background-color: darkgreen;
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+        }
+        button:active {
+            box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.5); /* Change shadow color on click */
+        }
+        header img {
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to header image */
+            border-radius: 10px; /* Optional: add border radius to match other images */
         }
     </style>
 </head>
@@ -69,21 +82,18 @@
         <section class="skills">
             <h2>Як підтримувати здоров'я?</h2>
             <ul class="skills-list">
-                <li><i class="fas fa-running"></i> Займайтеся фізичною активністю щонайменше 30 хвилин на день.</li>
-                <li><i class="fas fa-apple-alt"></i> Вживайте більше овочів, фруктів та корисних жирів.</li>
-                <li><i class="fas fa-bed"></i> Дотримуйтесь режиму сну та уникайте стресових ситуацій.</li>
-                <li><i class="fas fa-stethoscope"></i> Регулярно проходьте медичні обстеження та стежте за рівнем гідратації.</li>
-                <li><i class="fas fa-tree"></i> Проводьте час на свіжому повітрі та уникайте шкідливих звичок.</li>
+                <li><i class="fas fa-lemon" style="color: #a1b916;"></i> Цитрусові (апельсини, лимони, грейпфрути) – багаті на вітамін С, який підвищує захисні функції організму;</li>
+                <li><i class="fas fa-virus" style="color: #ff9999;"></i> Часник – має противірусні та антибактеріальні властивості, допомагає боротися з інфекціями;</li>
+                <li><i class="fas fa-carrot" style="color: #ff6600;"></i> Імбир – містить антиоксиданти та зменшує запальні процеси в організмі;</li>
+                <li><i class="fas fa-ice-cream" style="color: #ffcc99;"></i> Йогурт і кефір – містять пробіотики, які підтримують здорову мікрофлору кишечника, що важливо для імунітету;</li>
+                <li><i class="fas fa-seedling" style="color: #cc6600;"></i> Горіхи та насіння (мигдаль, волоські горіхи, гарбузове насіння) – містять вітаміни Е, цинк та корисні жири, які сприяють зміцненню імунної системи;</li>
             </ul>
         </section>
         
         <section class="gallery">
-            <h2>Галерея здорового способу життя</h2>
+            <button id="prev-image">⬅</button>
             <img id="gallery-image" src="img/gallery1.png" alt="Health Image">
-            <div class="gallery-controls">
-                <button id="prev-image">⬅</button>
-                <button id="next-image">➡</button>
-            </div>
+            <button id="next-image">➡</button>
         </section>
         
         <section class="pill-controls">
@@ -119,27 +129,37 @@
         });
         
         buyPillButton.addEventListener("click", function () {
-            pillsCount++;
-            pillsDisplay.innerHTML = "💊".repeat(pillsCount);
+            if (pillsCount < 5) {
+                pillsCount++;
+                pillsDisplay.innerHTML = "💊".repeat(pillsCount);
+            }
         });
         
         const images = [
             "img/gallery1.png",
             "img/gallery2.png",
             "img/gallery3.png"
-           
+         
         ];
         let currentIndex = 0;
         const galleryImage = document.getElementById("gallery-image");
         
         document.getElementById("next-image").addEventListener("click", function () {
             currentIndex = (currentIndex + 1) % images.length;
-            galleryImage.src = images[currentIndex];
+            galleryImage.style.opacity = 0; // Start fade out
+            setTimeout(() => {
+                galleryImage.src = images[currentIndex];
+                galleryImage.style.opacity = 1; // Fade in
+            }, 500); // Match the transition duration
         });
         
         document.getElementById("prev-image").addEventListener("click", function () {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
-            galleryImage.src = images[currentIndex];
+            galleryImage.style.opacity = 0; // Start fade out
+            setTimeout(() => {
+                galleryImage.src = images[currentIndex];
+                galleryImage.style.opacity = 1; // Fade in
+            }, 500); // Match the transition duration
         });
     </script>
 </body>
