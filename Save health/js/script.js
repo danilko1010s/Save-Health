@@ -32,3 +32,36 @@ document.getElementById('Wishes_btn').addEventListener('click' , () => {
     console.log('Номер елементу масиву - ', index);
 
 });
+const arrayOfVitaminobjects=[
+  {
+    "id":1,
+    "title":"Вітамін С",
+     " photo":"",
+     "description":"",
+     "rating":"",
+     "useful":"",
+  },
+  {
+    "id":2,
+    "title":"Вітамін С",
+     " photo":"",
+     "description":"",
+     "rating":"",
+     "useful":"",
+  },
+  {
+    "id":3,
+    "title":"Вітамін С",
+     " photo":"",
+     "description":"",
+     "rating":"",
+     "useful":"",
+  }
+]
+arrayOfVitaminobjects.forEach((item) => {
+  console.log(item)
+
+  let divVitamin = document.createElement('div')
+  divVitamin.classList.add('vitamin')
+  divVitamin.innerText = item.title
+})
