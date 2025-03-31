@@ -24,11 +24,76 @@ const arrayOfLoveWishes = [
   "Бажаю, щоб кожен день приносив тобі нові приводи для радості та любові!"
 ]
 
-document.getElementById('Wishes_btn').addEventListener('click' , () => {
-    //alert('Button clicked!')
-    let index=Math.floor(Math.random()*arrayOfLoveWishes.length)
-    document.getElementById('p_Wishes').innerText = arrayOfLoveWishes[index];
-    console.log('Button clicked');
-    console.log('Номер елементу масиву - ', index);
+//console.log(arrayOfVitamins)
+const arrayOfVitamins = [
+  {
+     id:1,
+     title:"Вітамін А",
+     photo:"vitamin-a.png",
+     description:"Вітамін А — група близьких за хімічною будовою речовин, яка включає ретиноїди: ретинол (вітамін A1, аксерофтол), дегідроретинол (вітамін А2), ретиналь (ретинен, альдегід вітаміну A1), ретиноєву кислоту і кілька провітамінів — каротиноїдів, серед яких найважливішим є β-каротин.",
+     rating:4,
+     type:"кристалічні"
+  },
+  {
+     id:2,
+     title:"Вітамін С",
+     photo:"vitamin-c.png",
+     description:"Аскорбíнова кислотá (лат. Ascorbic acid (BP, JP, USP)[1][2][3], лат. Acidum ascorbinicum (PhEur)[1], гамма-лактон 2,3-дегідро-L-гулонової кислоти, вітамін C) — відносно проста органічна кислота.",
+     rating:3,
+     type:"водорозчинні"
+  },
+  {
+     id:3,
+     title:"Вітамін D",
+     photo:"",
+     description:"",
+     rating:5,
+     type:""
+  },
+  {
+     id:4,
+     title:"Вітамін B3",
+     photo:"",
+     description:"",
+     rating:5,
+     type:""
+  },
+  {
+     id:5,
+     title:"Омега-3",
+     photo:"",
+     description:"",
+     rating:3,
+     type:""
+  },
+  {
+     id:6,
+     title:"Magnium-B6",
+     photo:"",
+     description:"",
+     rating:3,
+     type:""
+  },
+  
+]
 
-});
+//console.log(arrayOfVitamins)
+
+
+arrayOfVitamins.forEach((item,index) =>{
+  //console.log("елемент №",index,item)
+
+  let divVitamin = document.createElement('div')
+  divVitamin.classList.add('vitamin')
+
+  divVitamin.innerHTML = `
+        <span>${item.id}</span>
+        <h3>${item.title}</h3>
+        <hr>
+        <img src="img/vitamins/${item.photo}" alt="">
+        <p>${item.description}</p>
+        <span>${'💚'.repeat(item.rating)+'🤍'.repeat(5-item.rating)}</span>
+        <p>${item.type}</p> 
+     `
+  document.getElementById("p-vitamins").appendChild(divVitamin)
+}) 

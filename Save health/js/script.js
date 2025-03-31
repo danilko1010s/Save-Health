@@ -1,67 +1,66 @@
-console.log('Scrip connected!');
+const arrayOfGalleryImages = [
+  "img/gallery1.png",
+  "img/gallery2.png",
+  "img/gallery3.png"
+];
+
+let galleryImage = 0;
+
+document.getElementById("main-image").setAttribute('src', arrayOfGalleryImages[galleryImage]);
+
+document.getElementById('right-arrow').addEventListener('click', () => {
+  galleryImage = (galleryImage + 1) % arrayOfGalleryImages.length;
+  document.getElementById("main-image").setAttribute('src', arrayOfGalleryImages[galleryImage]);
+});
+
+document.getElementById('left-arrow').addEventListener('click', () => {
+  galleryImage = (galleryImage - 1 + arrayOfGalleryImages.length) % arrayOfGalleryImages.length;
+  document.getElementById("main-image").setAttribute('src', arrayOfGalleryImages[galleryImage]);
+});
 
 const arrayOfLoveWishes = [
-    'Кохайте один одного! Це найважливіше',
-    'Будьте щасливі!',
-    'Кохання це важливо!',
-    'Нехай кохання зігріває твоє серце щомиті!',
-    'Хай любов завжди буде твоєю силою і натхненням!',
-    'Бажаю тобі романтики, ніжності та тепла!',
-    'Нехай твоя любов буде такою ж красивою, як ти!',
-    'Бажаю тобі справжнього, щирого та вірного кохання!',
-    "Нехай твоя любов буде такою ж яскравою, як сонце в небі!",
-  "Бажаю тобі безмежного щастя поруч із найдорожчою людиною!",
-  "Нехай кожен день дарує тобі ніжність і тепло коханих обіймів!",
-  "Хай серце завжди співає від радості та кохання!",
-  "Бажаю, щоб твоя любов була вічною та щирою!",
-  "Нехай твоє серце завжди знаходить відгук у серці коханої людини!",
-  "Хай кожен момент, проведений разом, буде сповнений гармонії та радості!",
-  "Бажаю, щоб твоє кохання долало всі перешкоди та труднощі!",
-  "Нехай ніжність і турбота завжди будуть частиною твоїх стосунків!",
-  "Хай ваше кохання буде таким же безмежним, як небо над нами!",
-  "Бажаю, щоб ваша історія кохання була найкращою казкою у світі!",
-  "Нехай у твоєму житті завжди буде хтось, хто даруватиме тобі усмішку і тепло!",
-  "Бажаю, щоб кожен день приносив тобі нові приводи для радості та любові!"
-]
+  "Міцного здоров'я та довгих років життя!",
+  "Нехай кожен день буде сповнений енергії та сил!",
+  "Бажаю тобі здоров'я, яке ніколи не підводить!"
+];
 
-document.getElementById('Wishes_btn').addEventListener('click' , () => {
-    //alert('Button clicked!')
-    let index=Math.floor(Math.random()*arrayOfLoveWishes.length)
-    document.getElementById('p_Wishes').innerText = arrayOfLoveWishes[index];
-    console.log('Button clicked');
-    console.log('Номер елементу масиву - ', index);
-
+document.getElementById('Wishes_btn').addEventListener('click', () => {
+  const randomWish = arrayOfLoveWishes[Math.floor(Math.random() * arrayOfLoveWishes.length)];
+  document.getElementById('p_Wishes').innerText = randomWish;
 });
-const arrayOfVitaminobjects=[
-  {
-    "id":1,
-    "title":"Вітамін С",
-     " photo":"",
-     "description":"",
-     "rating":"",
-     "useful":"",
-  },
-  {
-    "id":2,
-    "title":"Вітамін С",
-     " photo":"",
-     "description":"",
-     "rating":"",
-     "useful":"",
-  },
-  {
-    "id":3,
-    "title":"Вітамін С",
-     " photo":"",
-     "description":"",
-     "rating":"",
-     "useful":"",
-  }
-]
-arrayOfVitaminobjects.forEach((item) => {
-  console.log(item)
 
-  let divVitamin = document.createElement('div')
-  divVitamin.classList.add('vitamin')
-  divVitamin.innerText = item.title
-})
+const arrayOfVitamins = [
+  {
+      id: 1,
+      title: "Вітамін А",
+      photo: "vitamin-a.png",
+      description: "Вітамін А підтримує зір та імунітет.",
+      rating: 4,
+      type: "Кристалічний"
+  },
+  {
+      id: 2,
+      title: "Вітамін С",
+      photo: "vitamin-c.png",
+      description: "Вітамін С сприяє загоєнню ран.",
+      rating: 5,
+      type: "Водорозчинний"
+  }
+];
+
+arrayOfVitamins.forEach(vitamin => {
+  const divVitamin = document.createElement('div');
+  divVitamin.classList.add('vitamin');
+
+  divVitamin.innerHTML = `
+      <span>${vitamin.id}</span>
+      <h3>${vitamin.title}</h3>
+      <hr>
+      <img src="img/vitamins/${vitamin.photo}" alt="${vitamin.title}">
+      <p>${vitamin.description}</p>
+      <span>${'💚'.repeat(vitamin.rating) + '🤍'.repeat(5 - vitamin.rating)}</span>
+      <p>${vitamin.type}</p>
+  `;
+
+  document.getElementById("p-vitamins").appendChild(divVitamin);
+});

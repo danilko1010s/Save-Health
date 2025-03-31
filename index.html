@@ -30,13 +30,8 @@
             width: 400px;
             height: 300px;
             border-radius: 10px;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to main image */
-            transition: opacity 0.5s ease-in-out; /* Add animation for image changes */
-        }
-        .gallery-controls {
-            display: flex;
-            flex-direction: column;
-            margin-left: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: opacity 0.5s ease-in-out;
         }
         .skills-list li {
             list-style: none;
@@ -56,19 +51,59 @@
             padding: 10px 15px;
             border-radius: 5px;
             cursor: pointer;
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to buttons */
-            transition: box-shadow 0.3s ease; /* Add transition for shadow change */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            transition: box-shadow 0.3s ease;
         }
         button:hover {
             background-color: darkgreen;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3); /* Add shadow on hover */
+            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.3);
         }
         button:active {
-            box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.5); /* Change shadow color on click */
+            box-shadow: 0px 4px 8px rgba(0, 128, 0, 0.5);
         }
         header img {
-            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2); /* Add shadow to header image */
-            border-radius: 10px; /* Optional: add border radius to match other images */
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+        .vitamin {
+            border: 1px solid rgb(124, 124, 124);
+            margin: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: #999999 5px 5px 10px;
+            width: 150px;
+            min-height: 300px;
+            text-align: center;
+        }
+        .vitamin img {
+            width: 50px;
+            height: 50px;
+        }
+        .vitamin span:first-child {
+            text-align: right;
+            font-size: 10px;
+            color: #999999;
+        }
+        .vitamin h3 {
+            font-size: 24px;
+        }
+        .vitamin p:first-child {
+            text-align: justify;
+            font-size: 18px;
+            color: #000dff;
+        }
+        .vitamin p:last-child {
+            text-align: center;
+            width: 100%;
+            border-top: 1px solid #999999;
+            border-bottom: 1px solid #999999;
+            background-color: #cccccc;
+            font-size: 14px;
+        }
+        #p-vitamins {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
         }
     </style>
 </head>
@@ -106,9 +141,9 @@
     </div>
     <section class="vitamins">
         <h2>Вітаміни</h2>
-        <p id = "p-vitamins"></p>
-    </selection>
-      
+        <div id="p-vitamins"></div>
+    </section>
+    
     <script>
         let pillsCount = 5;
         const pillsDisplay = document.getElementById("count-of-pills");
@@ -143,27 +178,63 @@
             "img/gallery1.png",
             "img/gallery2.png",
             "img/gallery3.png"
-         
         ];
         let currentIndex = 0;
         const galleryImage = document.getElementById("gallery-image");
         
         document.getElementById("next-image").addEventListener("click", function () {
             currentIndex = (currentIndex + 1) % images.length;
-            galleryImage.style.opacity = 0; // Start fade out
+            galleryImage.style.opacity = 0;
             setTimeout(() => {
                 galleryImage.src = images[currentIndex];
-                galleryImage.style.opacity = 1; // Fade in
-            }, 500); // Match the transition duration
+                galleryImage.style.opacity = 1;
+            }, 500);
         });
         
         document.getElementById("prev-image").addEventListener("click", function () {
             currentIndex = (currentIndex - 1 + images.length) % images.length;
-            galleryImage.style.opacity = 0; // Start fade out
+            galleryImage.style.opacity = 0;
             setTimeout(() => {
                 galleryImage.src = images[currentIndex];
-                galleryImage.style.opacity = 1; // Fade in
-            }, 500); // Match the transition duration
+                galleryImage.style.opacity = 1;
+            }, 500);
+        });
+
+        // Vitamins functionality
+        const arrayOfVitamins = [
+            {
+                id: 1,
+                title: "Вітамін А",
+                photo: "vitamin-a.png",
+                description: "Вітамін А підтримує зір та імунітет.",
+                rating: 4,
+                type: "Кристалічний"
+            },
+            {
+                id: 2,
+                title: "Вітамін С",
+                photo: "vitamin-c.png",
+                description: "Вітамін С сприяє загоєнню ран.",
+                rating: 5,
+                type: "Водорозчинний"
+            }
+        ];
+
+        arrayOfVitamins.forEach(vitamin => {
+            const divVitamin = document.createElement("div");
+            divVitamin.classList.add("vitamin");
+
+            divVitamin.innerHTML = `
+                <span>${vitamin.id}</span>
+                <h3>${vitamin.title}</h3>
+                <hr>
+                <img src="img/vitamins/${vitamin.photo}" alt="${vitamin.title}">
+                <p>${vitamin.description}</p>
+                <span>${'💚'.repeat(vitamin.rating) + '🤍'.repeat(5 - vitamin.rating)}</span>
+                <p>${vitamin.type}</p>
+            `;
+
+            document.getElementById("p-vitamins").appendChild(divVitamin);
         });
     </script>
 </body>
