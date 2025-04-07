@@ -1,0 +1,50 @@
+[
+  {
+    "id": 1,
+    "name": "Вітамін A",
+    "description": "Покращує зір та імунітет. Допомагає підтримувати здорову шкіру та слизові оболонки.",
+    "image": "img/vitamin-a.png",
+    "structure": "./img/schema-a.png",
+    "rating": 5
+  },
+  {
+    "id": 2,
+    "name": "Вітамін B",
+    "description": "Допомагає нервовій системі. Сприяє обміну речовин та енергії.",
+    "image": "img/vitamin-b.png",
+    "structure": "./img/schema-b.png",
+    "rating": 4
+  },
+  {
+    "id": 3,
+    "name": "Вітамін C",
+    "description": "Зміцнює імунітет та шкіру. Допомагає у засвоєнні заліза.",
+    "image": "img/vitamin-c.png",
+    "structure": "./img/schema-c.png",
+    "rating": 5
+  },
+  {
+    "id": 4,
+    "name": "Вітамін D",
+    "description": "Сприяє здоров’ю кісток. Допомагає засвоювати кальцій та фосфор.",
+    "image": "img/vitamin-d.png",
+    "structure": "./img/schema-d.png",
+    "rating": 5
+  },
+  {
+    "id": 5,
+    "name": "Вітамін E",
+    "description": "Захищає клітини від старіння. Є потужним антиоксидантом.",
+    "image": "img/vitamin-e.png",
+    "structure": "./img/schema-e.png",
+    "rating": 4
+  },
+  {
+    "id": 6,
+    "name": "Вітамін K",
+    "description": "Покращує згортання крові. Допомагає у підтримці здоров’я кісток.",
+    "image": "img/vitamin-k.png",
+    "structure": "./img/schema-k.png",
+    "rating": 3
+  }
+]

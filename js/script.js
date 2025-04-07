@@ -1,99 +1,100 @@
-console.log('Scrip connected!');
+document.addEventListener("DOMContentLoaded", () => {
+  const images = document.querySelectorAll(".gallery-image");
+  const leftArrow = document.getElementById("left-arrow");
+  const rightArrow = document.getElementById("right-arrow");
+  let currentIndex = 0;
 
-const arrayOfLoveWishes = [
-    'Кохайте один одного! Це найважливіше',
-    'Будьте щасливі!',
-    'Кохання це важливо!',
-    'Нехай кохання зігріває твоє серце щомиті!',
-    'Хай любов завжди буде твоєю силою і натхненням!',
-    'Бажаю тобі романтики, ніжності та тепла!',
-    'Нехай твоя любов буде такою ж красивою, як ти!',
-    'Бажаю тобі справжнього, щирого та вірного кохання!',
-    "Нехай твоя любов буде такою ж яскравою, як сонце в небі!",
-  "Бажаю тобі безмежного щастя поруч із найдорожчою людиною!",
-  "Нехай кожен день дарує тобі ніжність і тепло коханих обіймів!",
-  "Хай серце завжди співає від радості та кохання!",
-  "Бажаю, щоб твоя любов була вічною та щирою!",
-  "Нехай твоє серце завжди знаходить відгук у серці коханої людини!",
-  "Хай кожен момент, проведений разом, буде сповнений гармонії та радості!",
-  "Бажаю, щоб твоє кохання долало всі перешкоди та труднощі!",
-  "Нехай ніжність і турбота завжди будуть частиною твоїх стосунків!",
-  "Хай ваше кохання буде таким же безмежним, як небо над нами!",
-  "Бажаю, щоб ваша історія кохання була найкращою казкою у світі!",
-  "Нехай у твоєму житті завжди буде хтось, хто даруватиме тобі усмішку і тепло!",
-  "Бажаю, щоб кожен день приносив тобі нові приводи для радості та любові!"
-]
+  function updateGallery() {
+    images.forEach((img, index) => {
+      img.classList.toggle("active", index === currentIndex);
+      img.style.transition = "opacity 0.5s ease-in-out"; // Ensure smooth transitions
+    });
+  }
 
-//console.log(arrayOfVitamins)
-const arrayOfVitamins = [
-  {
-     id:1,
-     title:"Вітамін А",
-     photo:"vitamin-a.png",
-     description:"Вітамін А — група близьких за хімічною будовою речовин, яка включає ретиноїди: ретинол (вітамін A1, аксерофтол), дегідроретинол (вітамін А2), ретиналь (ретинен, альдегід вітаміну A1), ретиноєву кислоту і кілька провітамінів — каротиноїдів, серед яких найважливішим є β-каротин.",
-     rating:4,
-     type:"кристалічні"
-  },
-  {
-     id:2,
-     title:"Вітамін С",
-     photo:"vitamin-c.png",
-     description:"Аскорбíнова кислотá (лат. Ascorbic acid (BP, JP, USP)[1][2][3], лат. Acidum ascorbinicum (PhEur)[1], гамма-лактон 2,3-дегідро-L-гулонової кислоти, вітамін C) — відносно проста органічна кислота.",
-     rating:3,
-     type:"водорозчинні"
-  },
-  {
-     id:3,
-     title:"Вітамін D",
-     photo:"",
-     description:"",
-     rating:5,
-     type:""
-  },
-  {
-     id:4,
-     title:"Вітамін B3",
-     photo:"",
-     description:"",
-     rating:5,
-     type:""
-  },
-  {
-     id:5,
-     title:"Омега-3",
-     photo:"",
-     description:"",
-     rating:3,
-     type:""
-  },
-  {
-     id:6,
-     title:"Magnium-B6",
-     photo:"",
-     description:"",
-     rating:3,
-     type:""
-  },
-  
-]
+  leftArrow.addEventListener("click", () => {
+    currentIndex = (currentIndex - 1 + images.length) % images.length;
+    updateGallery();
+  });
 
-//console.log(arrayOfVitamins)
+  rightArrow.addEventListener("click", () => {
+    currentIndex = (currentIndex + 1) % images.length;
+    updateGallery();
+  });
 
+  // Initialize the gallery
+  updateGallery();
 
-arrayOfVitamins.forEach((item,index) =>{
-  //console.log("елемент №",index,item)
+  const btnBuyPills = document.getElementById("btn-buy-pills");
+  const btnHealthWishes = document.getElementById("btn_health_wishes");
+  const countOfPills = document.getElementById("count-of-pills");
+  const pHealthWishes = document.getElementById("p-health-wishes");
 
-  let divVitamin = document.createElement('div')
-  divVitamin.classList.add('vitamin')
+  let pillStock = 0;
+  const adviceList = [
+    "Пийте більше води для гарного самопочуття.",
+    "Робіть зарядку щоранку для енергії.",
+    "Відпочивайте достатньо, щоб уникнути стресу.",
+    "Їжте більше овочів та фруктів.",
+    "Проводьте час на свіжому повітрі."
+  ];
 
-  divVitamin.innerHTML = `
-        <span>${item.id}</span>
-        <h3>${item.title}</h3>
-        <hr>
-        <img src="img/vitamins/${item.photo}" alt="">
-        <p>${item.description}</p>
-        <span>${'💚'.repeat(item.rating)+'🤍'.repeat(5-item.rating)}</span>
-        <p>${item.type}</p> 
-     `
-  document.getElementById("p-vitamins").appendChild(divVitamin)
-}) 
+  function updatePillStock() {
+    countOfPills.textContent = "💊".repeat(pillStock); // Display pill icons
+  }
+
+  btnBuyPills.addEventListener("click", () => {
+    pillStock = 5;
+    updatePillStock();
+  });
+
+  btnHealthWishes.addEventListener("click", () => {
+    if (pillStock > 0) {
+      pillStock--;
+      const randomAdvice = adviceList[Math.floor(Math.random() * adviceList.length)];
+      pHealthWishes.textContent = randomAdvice;
+    } else {
+      pHealthWishes.textContent = "Немає пігулок! Купіть ще.";
+    }
+    updatePillStock();
+  });
+
+  // Initialize pill stock display
+  updatePillStock();
+
+  const vitaminsContainer = document.getElementById("p-vitamins");
+
+  async function fetchVitamins() {
+    try {
+      const response = await fetch("data/vitamins.json");
+      const vitamins = await response.json();
+      renderVitamins(vitamins);
+    } catch (error) {
+      console.error("Error fetching vitamins data:", error);
+    }
+  }
+
+  function renderVitamins(vitamins) {
+    // Sort vitamins by rating in descending order
+    vitamins.sort((a, b) => b.rating - a.rating);
+
+    vitaminsContainer.innerHTML = vitamins
+      .map(
+        (vitamin) => `
+        <div class="vitamin">
+          <p>ID: ${vitamin.id}</p>
+          <h3>${vitamin.name}</h3>
+          <img src="${vitamin.image}" alt="${vitamin.name}">
+          <p>${vitamin.description}</p>
+          <div>
+            <img src="${vitamin.structure}" alt="Схема будови ${vitamin.name}">
+          </div>
+          <p>Рейтинг: ${"❤️".repeat(vitamin.rating)}</p>
+        </div>
+      `
+      )
+      .join("");
+  }
+
+  // Fetch and render vitamins
+  fetchVitamins();
+});
