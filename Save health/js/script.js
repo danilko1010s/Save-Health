@@ -63,40 +63,41 @@ document.getElementById('left-arrow').addEventListener('click', () => {
 
 function amin(galleryImage) {
   const mainImage = document.getElementById('main-image');
-  mainImage.style.opacity = '0'; // Почати з прозорості
-  mainImage.setAttribute('src', `img/gallery/${arrayOfGalleryImages[galleryImage]}`);
+  mainImage.style.opacity = '0'; // Start with transparency
   setTimeout(() => {
-     mainImage.style.opacity = '1'; // Показати зображення
-  }, 300); // Час анімації має співпадати з transition у CSS
+    mainImage.setAttribute('src', `img/gallery/${arrayOfGalleryImages[galleryImage]}`);
+    mainImage.style.opacity = '1'; // Fade in the new image
+  }, 300); // Match the transition duration in CSS
 }
 
-fetch('js/vitamins.json')
+fetch('data/vitamins.json')
   .then(response => response.json())
   .then(data => {
      data.forEach((item, index) => {
-        //console.log("елемент №",index,item)
-
-        let divVitamin = document.createElement('div')
-        divVitamin.classList.add('vitamin')
+        let divVitamin = document.createElement('div');
+        divVitamin.classList.add('vitamin');
 
         divVitamin.innerHTML = `
-                 <p>${item.id}</p>
-                 <h3>${item.title}</h3>
+                 <p>ID: ${item.id}</p>
+                 <h3>${item.name}</h3>
                  <hr>
-                 <img src="img/vitamins/${item.photo}" alt="">
-                 <p>${item.description}</p>
-                 
+                 <img src="${item.image}" alt="${item.name}">
+                 <p>${item.description}</p> <!-- Added description here -->
                  <div>
-                 <img src="img/vitamins/${item.schema}" alt="">
-                    <p>${'💚'.repeat(item.rating) + '🤍'.repeat(5 - item.rating)}</p>
-                    <p>${item.type}</p> 
+                   <img src="${item.structure}" alt="Схема ${item.name}">
+                   <p>${'💚'.repeat(item.rating) + '🤍'.repeat(5 - item.rating)}</p>
                  </div>
-                 
-              `
-        document.getElementById("p-vitamins").appendChild(divVitamin)
-     })
-
+              `;
+        document.getElementById("p-vitamins").appendChild(divVitamin);
+     });
   })
   .catch(error => {
      console.error('Помилка при завантаженні JSON:', error);
   });
+
+document.getElementById("p-vitamins").addEventListener("click", (event) => {
+  const vitaminCard = event.target.closest(".vitamin");
+  if (vitaminCard) {
+    alert(`Відкрито вітамін: ${vitaminCard.querySelector("h3").textContent}`);
+  }
+});

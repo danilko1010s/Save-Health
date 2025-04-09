@@ -74,21 +74,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function renderVitamins(vitamins) {
-    // Sort vitamins by rating in descending order
-    vitamins.sort((a, b) => b.rating - a.rating);
-
     vitaminsContainer.innerHTML = vitamins
       .map(
         (vitamin) => `
         <div class="vitamin">
           <p>ID: ${vitamin.id}</p>
           <h3>${vitamin.name}</h3>
-          <img src="${vitamin.image}" alt="${vitamin.name}">
-          <p>${vitamin.description}</p>
-          <div>
-            <img src="${vitamin.structure}" alt="Схема будови ${vitamin.name}">
+          <div class="vitamin-details">
+            <img src="${vitamin.image}" alt="${vitamin.name}">
+            <p>${vitamin.description}</p>
+            <div>
+              <img src="${vitamin.structure}" alt="Схема будови ${vitamin.name}">
+            </div>
+            <p class="rating">Рейтинг: ${"❤️".repeat(vitamin.rating)}</p>
           </div>
-          <p>Рейтинг: ${"❤️".repeat(vitamin.rating)}</p>
         </div>
       `
       )
@@ -96,5 +95,20 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Fetch and render vitamins
-  fetchVitamins();
+  fetch("data/vitamins.json")
+    .then((response) => response.json())
+    .then((vitamins) => renderVitamins(vitamins))
+    .catch((error) => console.error("Error fetching vitamins data:", error));
+
+  document.getElementById("p-vitamins").addEventListener("click", (event) => {
+    const vitaminCard = event.target.closest(".vitamin");
+    if (vitaminCard) {
+      const details = vitaminCard.querySelector(".vitamin-details");
+      if (details) {
+        details.classList.toggle("active");
+        vitaminCard.style.backgroundColor = details.classList.contains("active") ? "#ffffff" : "#000000";
+        vitaminCard.style.color = details.classList.contains("active") ? "#000000" : "#ffffff";
+      }
+    }
+  });
 });

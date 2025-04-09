@@ -4,9 +4,22 @@ body {
   font-size: 14px;
   line-height: 18px;
   color: #000000;
-  background: #ffffff url("../img/") no-repeat 50% 0;
-  background-size: cover;
-  background-color: #d4edda; /* Softer green shade */
+  background-color: #98fb98; /* Soft green background */
+  animation: none; /* Removed background animation */
+  transition: background-color 0.5s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+* {
+  animation: fadeIn 1s ease-in-out;
 }
 
 h1 {
@@ -40,8 +53,8 @@ h2 {
 /* Add a rule for the vip class here */
 .vip {
   border-color: #ff5a26;
-  color: #000000
-  }
+  color: #000000;
+}
 
 .container {
   width: 600px;
@@ -69,8 +82,8 @@ h2 {
 
 .feature-kitten {
   padding-top: 60px;
-  width:50px;
-  background-image: url("../img/smallpill1.jpg")  ;
+  width: 50px;
+  background-image: url("../img/smallpill1.jpg");
 }
 
 .feature-cat {
@@ -96,7 +109,7 @@ h2 {
 
 /* Галерея */
 
-.gallery{
+.gallery {
   margin: 40px;
   width: 100%;
   display: flex;
@@ -111,7 +124,7 @@ h2 {
   height: 300px;
   display: none; /* Hide all images by default */
   opacity: 0;
-  transition: opacity 0.5s ease;
+  transition: opacity 0.5s ease, transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .gallery-image.active {
@@ -120,15 +133,20 @@ h2 {
   opacity: 1;
 }
 
-#main-image{
-  width: 300px;
-  height:200px;
-  box-shadow: 10px 10px 15px #cccccc;
-  transition: opacity 0.3s ease;
-  
+.gallery-image:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
-#left-arrow, #right-arrow {
+#main-image {
+  width: 300px;
+  height: 200px;
+  box-shadow: 10px 10px 15px #cccccc;
+  transition: opacity 0.3s ease;
+}
+
+#left-arrow,
+#right-arrow {
   font-size: 48px;
   cursor: pointer;
   position: absolute;
@@ -146,12 +164,14 @@ h2 {
   right: 10px;
 }
 
-#left-arrow:hover, #right-arrow:hover {
+#left-arrow:hover,
+#right-arrow:hover {
   transform: scale(1.2);
   color: #ff7f50; /* Highlight color */
 }
 
-#left-arrow:active, #right-arrow:active {
+#left-arrow:active,
+#right-arrow:active {
   transform: scale(0.9);
 }
 
@@ -165,29 +185,33 @@ h2 {
 
 /* Побажання */
 
-.wishes{
+.wishes {
   margin-top: 30px;
-  text-align: center;  
+  text-align: center;
 }
 
+button,
 #btn_health_wishes {
-  background: #ff5a26;
-  color: #ffc5b3;
-  border: 5px solid #ffc5b3;
-  border-radius: 10px;
+  background: linear-gradient(135deg, #6dd5ed, #2193b0); /* Gradient background */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 25px; /* Rounded corners */
   padding: 10px 20px;
-  font-size: 36px;
+  font-size: 18px;
+  font-weight: bold;
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+button:hover,
 #btn_health_wishes:hover {
-  transform: translateY(-5px);
+  transform: scale(1.1);
   box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
+button:active,
 #btn_health_wishes:active {
-  transform: translateY(0);
+  transform: scale(0.95);
   box-shadow: none;
 }
 
@@ -197,14 +221,12 @@ h2 {
   line-height: 40px;
   color: #ff5a26;
   text-align: justify;
-  
 }
-
 
 /* Блок з купівлею та відображенням 🧡*/
 
 .site-footer p {
-  border:1px solid #ff5a26;
+  border: 1px solid #ff5a26;
   padding: 10px 20px;
   border-radius: 10px 0px;
   background-color: #ffc5b3;
@@ -221,83 +243,145 @@ h2 {
   flex-direction: row;
   justify-content: space-around;
   flex-wrap: wrap;
-} 
+}
 
 .vitamin {
+  background-color: #000000; /* Black background */
+  color: #ffffff; /* White text */
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+  width: 250px; /* Fixed width */
+  height: 350px; /* Fixed height */
+  overflow: hidden; /* Prevent content overflow */
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
   align-items: center;
-  border:1px solid rgb(124, 124, 124);
-   margin:10px;
-   padding:10px; 
-   border-radius: 5px;
-   box-shadow: #999999 5px 5px 10px;
-   width: 250px;
-   min-height: 300px;
-   text-align: center;
-}
-/* all */
-.vitamin p{ 
-  color: #333333;
-  text-align: justify; 
 }
 
-/* id */
-.vitamin p:first-child{
+.vitamin:hover {
+  transform: scale(1.05);
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+.vitamin img {
+  width: 50px; /* Smaller image size */
+  height: 50px;
+  margin-bottom: 10px;
+}
+
+.vitamin-details {
+  display: none;
+  margin-top: 10px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px; /* Smaller font size for description */
+}
+
+.vitamin-details.active {
+  display: block;
+  background-color: #ffffff; /* White background when opened */
+  color: #000000; /* Black text for white background */
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.vitamin .rating {
+  margin-top: 5px;
+  font-size: 14px; /* Smaller font size for rating */
+  color: #ffcc00; /* Gold color for stars */
+}
+
+.vitamin p {
+  color: #ffffff;
+  text-align: justify;
+}
+
+.vitamin p.description {
+  color: #000000; /* Set description text color to black */
+}
+
+.vitamin div {
+  margin-top: auto;
+  width: 100%;
+}
+
+.vitamin div > img {
+  width: 100%;
+  height: auto;
+}
+
+.vitamin p:first-child {
   align-self: flex-end;
   font-size: 10px;
   color: #999999;
 }
 
-.vitamin h3{
+.vitamin h3 {
   font-size: 24px;
 }
 
-.vitamin img{
-  width: 64px;
-  height: 64px;
-}
-
-/* блок притиснутий до низу картки  */
-.vitamin div{
-  margin-top: auto;
-  width: 100%;  
-}
-
-/*img schema */
-.vitamin div>img{
- width: 100%;
- height: auto  
-}
-
-/* rating*/
-.vitamin div p:first-child{
+.vitamin div p:first-child {
   text-align: center;
-  width: 100%;  
+  width: 100%;
   font-size: 20px;
 }
 
-/* type */
-.vitamin div p:last-child{
+.vitamin div p:last-child {
   text-align: center;
   width: 100%;
-  border-top: 1px solid #999999 ;
+  border-top: 1px solid #999999;
   border-bottom: 1px solid #999999;
-  border-radius: 0px 0px 10px 10px;   
+  border-radius: 0px 0px 10px 10px;
   background-color: #cccccc;
   font-size: 14px;
   padding: 3px 0px;
 }
 
 #btn-buy-pills {
-  transition: transform 0.3s ease, background-color 0.3s ease;
+  background: linear-gradient(135deg, #ff7f50, #ff4500); /* Gradient background for button */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 25px; /* Rounded corners */
+  padding: 10px 20px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 #btn-buy-pills:hover {
   transform: scale(1.1);
-  background-color: #ff7f50; /* Lighter coral color */
+  box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
 }
 
 #btn-buy-pills:active {
-  transform: scale(0.9);
+  transform: scale(0.95);
+  box-shadow: none;
+}
+
+#btn-buy-pills::before {
+  content: "🛒"; /* Shopping cart icon */
+  margin-right: 10px;
+}
+
+#count-of-pills {
+  background: linear-gradient(135deg, #ffcc70, #ff9966); /* Gradient background for pill count */
+  color: #ffffff; /* White text */
+  border: none;
+  border-radius: 15px; /* Rounded corners */
+  padding: 10px 15px;
+  font-size: 18px;
+  font-weight: bold;
+  display: inline-block;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#count-of-pills::before {
+  content: "💊"; /* Updated pill icon */
+  margin-right: 5px;
 }
